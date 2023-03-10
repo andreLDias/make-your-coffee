@@ -55,7 +55,6 @@ const CoffeeInformation = () => {
     <S.Wrapper>
       <S.Title>Hora do café!</S.Title>
       <Lottie options={defaultOptions} height={500} width={500} />
-      {console.log(selectedInitialMeasure)}
       <ToggleButtonGroup
         value={selectedInitialMeasure}
         exclusive
