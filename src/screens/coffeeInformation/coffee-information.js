@@ -3,13 +3,14 @@ import coffeeAnimatedJSON from '../../coffee-animated.json'
 import { Coffee, Grain } from '@mui/icons-material'
 import * as S from './coffee-information.style'
 import {
-  Input,
   MenuItem,
   Select,
   Button,
   ToggleButtonGroup,
   ToggleButton,
   Tooltip,
+  OutlinedInput,
+  InputAdornment,
 } from '@mui/material'
 import Lottie from 'react-lottie'
 
@@ -28,13 +29,12 @@ const CoffeeInformation = () => {
 
   const handleSubmit = () => {
     if (selectedInitialMeasure === 'milliliters') {
-      console.log({ coffeeMeasure, a: proportionsFromGrains[roastType] })
       const waterAmount = coffeeMeasure / proportionsFromGrains[roastType]
-      alert(waterAmount)
+      setExpectedAmount(waterAmount)
     }
     if (selectedInitialMeasure === 'grains') {
       const waterAmount = coffeeMeasure * proportionsFromGrains[roastType]
-      alert(waterAmount)
+      setExpectedAmount(waterAmount)
     }
   }
 
@@ -45,15 +45,21 @@ const CoffeeInformation = () => {
     renderer: 'svg',
   }
 
+  const handleChangeBrewInitialType = (item) => {
+    if (!item) return
+    setSelectedInitialMeasure(item)
+    setExpectedAmount(null)
+  }
+
   return (
     <S.Wrapper>
       <S.Title>Hora do café!</S.Title>
       <Lottie options={defaultOptions} height={500} width={500} />
-
+      {console.log(selectedInitialMeasure)}
       <ToggleButtonGroup
         value={selectedInitialMeasure}
         exclusive
-        onChange={(_, item) => setSelectedInitialMeasure(item)}
+        onChange={(_, item) => handleChangeBrewInitialType(item)}
         aria-label="escolher a partir de mililitros ou gramas"
       >
         <ToggleButton value="milliliters" aria-label="mililitros">
@@ -73,9 +79,22 @@ const CoffeeInformation = () => {
           ? `Quantos mls de café? ☕️`
           : `Quantos gramas de pó? 🫘`}
       </S.SubTitle>
-      <Input
-        color="primary"
+      <OutlinedInput
+        id={`initial-measure-input-${selectedInitialMeasure}`}
+        variant="filled"
+        endAdornment={
+          <InputAdornment position="end">
+            {selectedInitialMeasure === 'milliliters' ? 'ml' : 'g'}
+          </InputAdornment>
+        }
+        aria-describedby={`initial-measure-input-${selectedInitialMeasure}`}
+        inputProps={{
+          'aria-label': `${
+            selectedInitialMeasure === 'milliliters' ? 'ml' : 'g'
+          }`,
+        }}
         onChange={(event) => setCoffeeMeasure(parseFloat(event.target.value))}
+        type="number"
       />
       <S.SubTitle>Qual a torra?</S.SubTitle>
       <Select
@@ -96,6 +115,14 @@ const CoffeeInformation = () => {
       >
         Vamos lá!
       </Button>
+      {Boolean(expectedAmount) && (
+        <div>
+          {expectedAmount}
+          {selectedInitialMeasure === 'milliliters'
+            ? ' ml de água'
+            : ' gramas de café'}
+        </div>
+      )}
     </S.Wrapper>
   )
 }
