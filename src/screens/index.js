@@ -1,3 +1,4 @@
 import CoffeeInformation from './coffeeInformation'
+import Results from './results'
 
-export { CoffeeInformation }
+export { CoffeeInformation, Results }

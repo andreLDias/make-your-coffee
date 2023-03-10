@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import coffeeAnimatedJSON from '../../coffee-animated.json'
+import coffeeAnimatedJSON from '../../assets/coffee-animated.json'
 import { Coffee, Grain } from '@mui/icons-material'
 import * as S from './coffee-information.style'
 import {

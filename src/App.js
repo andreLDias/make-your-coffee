@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { CoffeeInformation } from './screens'
+import { CoffeeInformation, Results } from './screens'
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<CoffeeInformation />} />
-            {/* <Route path="/resultado" element={<CoffeeInformation />} />  */}
+            <Route path="/resultado" element={<Results />} />
           </Routes>
         </BrowserRouter>
       </header>
