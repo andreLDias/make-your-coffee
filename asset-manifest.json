@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/make-your-coffee/static/css/main.c6d3eda3.css",
-    "main.js": "/make-your-coffee/static/js/main.70b78c3d.js",
+    "main.js": "/make-your-coffee/static/js/main.47b247fc.js",
     "static/js/787.c06edc15.chunk.js": "/make-your-coffee/static/js/787.c06edc15.chunk.js",
     "index.html": "/make-your-coffee/index.html",
     "main.c6d3eda3.css.map": "/make-your-coffee/static/css/main.c6d3eda3.css.map",
-    "main.70b78c3d.js.map": "/make-your-coffee/static/js/main.70b78c3d.js.map",
+    "main.47b247fc.js.map": "/make-your-coffee/static/js/main.47b247fc.js.map",
     "787.c06edc15.chunk.js.map": "/make-your-coffee/static/js/787.c06edc15.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c6d3eda3.css",
-    "static/js/main.70b78c3d.js"
+    "static/js/main.47b247fc.js"
   ]
 }
