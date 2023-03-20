@@ -8,8 +8,8 @@ function App() {
       <header className="App-header">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<CoffeeInformation />} />
-            <Route path="/resultado" element={<Results />} />
+            <Route path="/home" element={<CoffeeInformation />} />
+            <Route path="/resultado/:coffee/:water" element={<Results />} />
           </Routes>
         </BrowserRouter>
       </header>

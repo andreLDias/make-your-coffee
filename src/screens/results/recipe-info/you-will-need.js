@@ -1,14 +1,15 @@
 import React from 'react'
+import * as S from './recipe-info.style'
 import PowderAmount from './powderAmount'
 import WaterAmount from './waterAmount'
 
 const YouWillNeed = ({ water, powder }) => {
   return (
-    <div>
+    <S.Wrapper>
       Para fazer essa receita, você vai precisar de:
       <WaterAmount amount={water} />
       <PowderAmount amount={powder} />
-    </div>
+    </S.Wrapper>
   )
 }
 

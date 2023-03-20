@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import coffeeAnimatedJSON from '../../assets/coffee-animated.json'
+import loadingCoffeeAnimatedJSON from '../../assets/coffee-loading.json'
 import { Coffee, Grain } from '@mui/icons-material'
 import * as S from './coffee-information.style'
 import {
@@ -13,13 +14,17 @@ import {
   InputAdornment,
 } from '@mui/material'
 import Lottie from 'react-lottie'
+import { useNavigate } from 'react-router-dom'
 
 const CoffeeInformation = () => {
+  const navigate = useNavigate()
+
   const [selectedInitialMeasure, setSelectedInitialMeasure] =
     useState('milliliters')
-  const [expectedAmount, setExpectedAmount] = useState(0)
-  const [coffeeMeasure, setCoffeeMeasure] = useState(0)
+  const [waterAmount, setWaterAmount] = useState(0)
+  const [coffeeAmount, setCoffeeAmount] = useState(0)
   const [roastType, setRoastType] = useState('')
+  const [isLoading, setIsLoading] = useState('')
 
   const proportionsFromGrains = {
     'light-roast': 17,
@@ -29,32 +34,47 @@ const CoffeeInformation = () => {
 
   const handleSubmit = () => {
     if (selectedInitialMeasure === 'milliliters') {
-      const waterAmount = (coffeeMeasure + 1) / proportionsFromGrains[roastType]
-      setExpectedAmount(Number(waterAmount.toFixed(2)))
+      const powderAmount = waterAmount / (proportionsFromGrains[roastType] - 1)
+      const coffeeAmount = Number(powderAmount.toFixed(2))
+      const resultWaterAmount =
+        parseFloat(waterAmount) + parseFloat(coffeeAmount)
+
+      setIsLoading(true)
+      setTimeout(() => {
+        navigate(`/resultado/${coffeeAmount}/${resultWaterAmount}`)
+      }, 1500)
     }
     if (selectedInitialMeasure === 'grains') {
-      const waterAmount = coffeeMeasure * proportionsFromGrains[roastType]
-      setExpectedAmount(Number(waterAmount.toFixed(2)))
+      const tempWaterAmount = coffeeAmount * proportionsFromGrains[roastType]
+      const waterAmount = Number(tempWaterAmount.toFixed(2))
+
+      setIsLoading(true)
+      setTimeout(() => {
+        navigate(`/resultado/${coffeeAmount}/${waterAmount}`)
+      }, 1500)
     }
   }
 
-  const defaultOptions = {
+  const lottieOptions = (isLoading) => ({
     loop: true,
     autoplay: true,
-    animationData: coffeeAnimatedJSON,
+    animationData: isLoading ? loadingCoffeeAnimatedJSON : coffeeAnimatedJSON,
     renderer: 'svg',
-  }
+  })
 
   const handleChangeBrewInitialType = (item) => {
     if (!item) return
     setSelectedInitialMeasure(item)
-    setExpectedAmount(null)
+    setCoffeeAmount(null)
+    setWaterAmount(null)
   }
+
+  if (isLoading) return <Lottie options={lottieOptions(true)} height={300} />
 
   return (
     <S.Wrapper>
       <S.Title>Hora do café!</S.Title>
-      <Lottie options={defaultOptions} height={500} width={500} />
+      <Lottie options={lottieOptions(false)} height={300} />
       <ToggleButtonGroup
         value={selectedInitialMeasure}
         exclusive
@@ -92,7 +112,11 @@ const CoffeeInformation = () => {
             selectedInitialMeasure === 'milliliters' ? 'ml' : 'g'
           }`,
         }}
-        onChange={(event) => setCoffeeMeasure(parseFloat(event.target.value))}
+        onChange={(event) => {
+          selectedInitialMeasure === 'milliliters'
+            ? setWaterAmount(event.target.value)
+            : setCoffeeAmount(event.target.value)
+        }}
         type="number"
       />
       <S.SubTitle>Qual a torra?</S.SubTitle>
@@ -107,6 +131,7 @@ const CoffeeInformation = () => {
         <MenuItem value="dark-roast">Escura</MenuItem>
       </Select>
       <Button
+        disabled={!Boolean(roastType && (waterAmount || coffeeAmount))}
         variant="contained"
         size="large"
         sx={{ marginTop: '10px', marginBottom: '10px' }}
@@ -114,14 +139,6 @@ const CoffeeInformation = () => {
       >
         Vamos lá!
       </Button>
-      {Boolean(expectedAmount) && (
-        <div>
-          {expectedAmount}
-          {selectedInitialMeasure === 'milliliters'
-            ? ' gramas de café'
-            : ' ml de água'}
-        </div>
-      )}
     </S.Wrapper>
   )
 }

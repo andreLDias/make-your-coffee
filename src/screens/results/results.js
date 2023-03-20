@@ -4,8 +4,11 @@ import coffeeAnimatedJSON from '../../assets/coffee-brewing.json'
 import * as S from './results.style'
 import HowToPour from './recipe-tutorial'
 import YouWillNeed from './recipe-info'
+import { useParams } from 'react-router-dom'
 
 const Results = () => {
+  const { water, coffee } = useParams()
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -16,8 +19,8 @@ const Results = () => {
     <S.Wrapper>
       <S.Title>Chegou a melhor hora!</S.Title>
       <Lottie options={defaultOptions} height={250} width={250} />
-      <YouWillNeed water={375} powder={25} />
-      <HowToPour water={375} powder={25} />
+      <YouWillNeed water={water} powder={coffee} />
+      <HowToPour water={water} powder={coffee} />
     </S.Wrapper>
   )
 }

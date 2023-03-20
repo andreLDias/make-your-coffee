@@ -1,22 +1,25 @@
 import React from 'react'
+import * as S from './how-to-pour.style'
 
 const HowToPour = ({ water, powder }) => {
   return (
-    <div>
-      <div>Escalde o filtro! Isso evita resíduos de papel no seu café!</div>
-      <div>Adicione todo o pó de café no filtro</div>
-      <div>
-        Despeje {3 * powder}ml de água sobre o café, lentamente e em movimentos
-        circulares
-      </div>
-      <div>Aguarde entre 1 e 2 minutos!</div>
-      <div>
-        Despeje o restante de água ({water - 3 * powder}ml) lentamente (8ml/s) e
-        em movimentos circulares{' '}
-      </div>
-      <div>Aprecie o cheiro maravilhoso do seu café!</div>
-      <div>Sirva!</div>
-    </div>
+    <S.Wrapper>
+      <S.Item>
+        Escalde o filtro! Isso evita resíduos de papel no seu café!
+      </S.Item>
+      <S.Item>Adicione todo o pó de café no filtro</S.Item>
+      <S.Item>
+        Despeje <span>{3 * powder}ml</span> de água sobre o café, lentamente e
+        em movimentos circulares
+      </S.Item>
+      <S.Item>Aguarde entre 1 e 2 minutos!</S.Item>
+      <S.Item>
+        Despeje o restante de água (<span>{water - 3 * powder}ml</span>)
+        lentamente (8ml/s) e em movimentos circulares{' '}
+      </S.Item>
+      <S.Item>Aprecie o cheiro maravilhoso do seu café!</S.Item>
+      <S.Item>Sirva!</S.Item>
+    </S.Wrapper>
   )
 }
 
