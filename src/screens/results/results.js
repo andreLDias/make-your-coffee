@@ -1,9 +1,9 @@
 import React from 'react'
 import Lottie from 'react-lottie'
 import coffeeAnimatedJSON from '../../assets/coffee-brewing.json'
-import PowderAmount from './powderAmount'
 import * as S from './results.style'
-import WaterAmount from './waterAmount'
+import HowToPour from './recipe-tutorial'
+import YouWillNeed from './recipe-info'
 
 const Results = () => {
   const defaultOptions = {
@@ -16,8 +16,8 @@ const Results = () => {
     <S.Wrapper>
       <S.Title>Chegou a melhor hora!</S.Title>
       <Lottie options={defaultOptions} height={250} width={250} />
-      <WaterAmount amount={111} />
-      <PowderAmount amount={222} />
+      <YouWillNeed water={375} powder={25} />
+      <HowToPour water={375} powder={25} />
     </S.Wrapper>
   )
 }

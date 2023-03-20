@@ -29,12 +29,12 @@ const CoffeeInformation = () => {
 
   const handleSubmit = () => {
     if (selectedInitialMeasure === 'milliliters') {
-      const waterAmount = coffeeMeasure / proportionsFromGrains[roastType]
-      setExpectedAmount(waterAmount)
+      const waterAmount = (coffeeMeasure + 1) / proportionsFromGrains[roastType]
+      setExpectedAmount(Number(waterAmount.toFixed(2)))
     }
     if (selectedInitialMeasure === 'grains') {
       const waterAmount = coffeeMeasure * proportionsFromGrains[roastType]
-      setExpectedAmount(waterAmount)
+      setExpectedAmount(Number(waterAmount.toFixed(2)))
     }
   }
 
@@ -118,8 +118,8 @@ const CoffeeInformation = () => {
         <div>
           {expectedAmount}
           {selectedInitialMeasure === 'milliliters'
-            ? ' ml de água'
-            : ' gramas de café'}
+            ? ' gramas de café'
+            : ' ml de água'}
         </div>
       )}
     </S.Wrapper>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const WaterAmount = ({ amount }) => {
-  return <div>{amount}</div>
+  return <div>Água: {amount}ml</div>
 }
 
 export default WaterAmount
