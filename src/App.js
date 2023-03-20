@@ -4,16 +4,16 @@ import { CoffeeInformation, Results } from './screens'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <div className="App">
+        <header className="App-header">
           <Routes>
-            <Route path="/home" element={<CoffeeInformation />} />
+            <Route path="/" element={<CoffeeInformation />} />
             <Route path="/resultado/:coffee/:water" element={<Results />} />
           </Routes>
-        </BrowserRouter>
-      </header>
-    </div>
+        </header>
+      </div>
+    </BrowserRouter>
   )
 }
 
