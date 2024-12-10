@@ -1,3 +1,3 @@
-import CoffeeInformation from './coffee-information'
+import CoffeeInformation from './CoffeeInformation'
 
 export default CoffeeInformation

@@ -1,5 +1,5 @@
 import React from 'react'
-import * as S from './recipe-info.style'
+import * as S from './RecipeInfo.style'
 
 const PowderAmount = ({ amount }) => {
   return (

@@ -1,9 +1,9 @@
 import React from 'react'
 import Lottie from 'react-lottie'
 import coffeeAnimatedJSON from '../../assets/coffee-brewing.json'
-import * as S from './results.style'
-import HowToPour from './recipe-tutorial'
-import YouWillNeed from './recipe-info'
+import * as S from './Results.style'
+import HowToPour from './RecipeTutorial'
+import YouWillNeed from './RecipeInfo'
 import { useParams } from 'react-router-dom'
 
 const Results = () => {

@@ -1,4 +1,4 @@
-import CoffeeInformation from './coffeeInformation'
-import Results from './results'
+import CoffeeInformation from './CoffeeInformation'
+import Results from './Results'
 
 export { CoffeeInformation, Results }

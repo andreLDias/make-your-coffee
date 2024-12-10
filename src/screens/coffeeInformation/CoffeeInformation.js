@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import coffeeAnimatedJSON from '../../assets/coffee-animated.json'
 import loadingCoffeeAnimatedJSON from '../../assets/coffee-loading.json'
 import { Coffee, Grain } from '@mui/icons-material'
-import * as S from './coffee-information.style'
+import * as S from './CoffeeInformation.style'
 import {
   MenuItem,
   Select,

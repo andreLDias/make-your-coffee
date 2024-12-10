@@ -1,5 +1,5 @@
 import React from 'react'
-import * as S from './how-to-pour.style'
+import * as S from './HowToPour.style'
 
 const HowToPour = ({ water, powder }) => {
   return (

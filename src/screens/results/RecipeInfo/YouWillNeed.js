@@ -1,7 +1,7 @@
 import React from 'react'
-import * as S from './recipe-info.style'
-import PowderAmount from './powderAmount'
-import WaterAmount from './waterAmount'
+import * as S from './RecipeInfo.style'
+import PowderAmount from './PowderAmount'
+import WaterAmount from './WaterAmount'
 
 const YouWillNeed = ({ water, powder }) => {
   return (
